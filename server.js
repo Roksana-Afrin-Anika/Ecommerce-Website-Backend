@@ -11,7 +11,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 
 // Serve static files from the React app build folder
-app.use(express.static(path.join(__dirname, "frontend/build")));
+//app.use(express.static(path.join(__dirname, "frontend/build")));
 
 // API routes
 const userRoutes = require("./Routes/userRoutes");

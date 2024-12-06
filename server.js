@@ -30,11 +30,11 @@ const paymentRoutes = require("./Routes/paymentRoutes");
 app.use("/payment", paymentRoutes);
 
 // Serve static files from the React build directory
-<<<<<<< HEAD
+ HEAD
 app.use(
   express.static(path.join(__dirname, "Ecommerce_Website", "my-app", "build"))
 );
-=======
+
 app.use(express.static(path.join(__dirname, "Ecommerce_Website", "my-app", "build")));
 >>>>>>> b40c350f2474c79c2dd1f74579c9ce46f90fe225
 

@@ -13,7 +13,7 @@ app.use(
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 require("dotenv").config();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 5000;
 
 // Root route
 app.get("/", (req, res) => {
@@ -36,16 +36,12 @@ app.use("/order", orderRoutes);
 const paymentRoutes = require("./Routes/paymentRoutes");
 app.use("/payment", paymentRoutes);
 
-// Serve static files from the React build directory
-app.use(
-  express.static(path.join(__dirname, "my-app", "build"))
-);
+// Serve static files from the build folder
+app.use(express.static(path.join(__dirname, 'build')));
 
-// Serve the React app for any other requests (non-API)
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "my-app", "build", "index.html")
-  );
+// Serve the frontend for any unknown route
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {

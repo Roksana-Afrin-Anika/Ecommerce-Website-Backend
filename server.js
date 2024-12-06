@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 10000;
 app.get("/", (req, res) => {
   res.send("Welcome to the Ecommerce API!");
 });
+
 // API routes
 const userRoutes = require("./Routes/userRoutes");
 app.use("/user", userRoutes);
@@ -30,17 +31,14 @@ const paymentRoutes = require("./Routes/paymentRoutes");
 app.use("/payment", paymentRoutes);
 
 // Serve static files from the React build directory
-
 app.use(
-  express.static(path.join(__dirname, "Ecommerce_Website", "my-app", "build"))
+  express.static(path.join(__dirname, "my-app", "build"))
 );
-
-
 
 // Serve the React app for any other requests (non-API)
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "Ecommerce_Website", "my-app", "build", "index.html")
+    path.join(__dirname, "my-app", "build", "index.html")
   );
 });
 

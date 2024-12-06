@@ -36,7 +36,7 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "Ecommerce_Website", "my-app", "build")));
->>>>>>> b40c350f2474c79c2dd1f74579c9ce46f90fe225
+ b40c350f2474c79c2dd1f74579c9ce46f90fe225
 
 // Serve the React app for any other requests (non-API)
 app.get("*", (req, res) => {

@@ -3,7 +3,13 @@ const app = express();
 const path = require("path");
 const db = require("./db");
 const cors = require("cors");
-app.use(cors());
+const allowedOrigins = ["https://Roksana-Afrin-Anika.github.io"];
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: "GET,POST,PUT,DELETE",
+  })
+);
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 require("dotenv").config();

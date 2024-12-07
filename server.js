@@ -3,7 +3,10 @@ const app = express();
 const path = require("path");
 const db = require("./db");
 const cors = require("cors");
-const allowedOrigins = ["https://Roksana-Afrin-Anika.github.io"];
+const allowedOrigins = [
+  "https://ecommerce-website-1-k56z.onrender.com", // Frontend URL on Render
+  "http://localhost:3000", // Local frontend during development]
+];
 app.use(
   cors({
     origin: allowedOrigins,

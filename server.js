@@ -9,7 +9,13 @@ const allowedOrigins = [
 ];
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // Allow if origin is in allowedOrigins or undefined (e.g., Postman)
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: "GET,POST,PUT,DELETE",
   })
 );

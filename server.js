@@ -3,22 +3,23 @@ const app = express();
 const path = require("path");
 const db = require("./db");
 const cors = require("cors");
-const allowedOrigins = [
-  "https://ecommerce-website-1-k56z.onrender.com", // Frontend URL on Render
-  "http://localhost:3000", // Local frontend during development]
-];
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow if origin is in allowedOrigins or undefined (e.g., Postman)
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: "GET,POST,PUT,DELETE",
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "https://ecommerce-website-1-k56z.onrender.com",
+      "http://localhost:3000", // For local testing
+    ];
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 require("dotenv").config();
